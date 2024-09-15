@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://nvk68pm4xvkq"]
+
+[ext_resource type="Theme" uid="uid://cn5w6bn5ug2id" path="res://ui_theme.tres" id="1_pdeu4"]
+[ext_resource type="Script" path="res://Scripts/UX/money_label.gd" id="2_nodvb"]
+
+[node name="UX" type="MarginContainer"]
+theme = ExtResource("1_pdeu4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme = ExtResource("1_pdeu4")
+
+[node name="MoneyLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_nodvb")
+
+[node name="AverageLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2

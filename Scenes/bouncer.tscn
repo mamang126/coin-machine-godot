@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://dxtqyqu0aemfs"]
+
+[ext_resource type="Script" path="res://Scenes/bouncer.gd" id="1_6w12g"]
+[ext_resource type="Material" uid="uid://b0egf026k2l5c" path="res://Particles/particle_1.tres" id="2_0orkx"]
+[ext_resource type="Texture2D" uid="uid://d4bedcpxnpiwr" path="res://Assets/particle_1.png" id="3_djk6u"]
+[ext_resource type="Texture2D" uid="uid://cyigbsvebban4" path="res://Assets/bouncer1.png" id="4_kt1wn"]
+[ext_resource type="Texture2D" uid="uid://pqhh4a21afbn" path="res://Assets/bouncer2.png" id="5_xer21"]
+[ext_resource type="Texture2D" uid="uid://ch7rykuef6jqe" path="res://Assets/bouncer3.png" id="6_ieb6n"]
+[ext_resource type="Texture2D" uid="uid://bidiniwnju1ni" path="res://Assets/bouncer4.png" id="7_uvhl2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_njfwu"]
+friction = 0.0
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3yl48"]
+radius = 16.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q55ea"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kt1wn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xer21")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ieb6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_uvhl2")
+}],
+"loop": true,
+"name": &"power",
+"speed": 5.0
+}]
+
+[node name="Bouncer" type="StaticBody2D" groups=["Bouncer"]]
+physics_material_override = SubResource("PhysicsMaterial_njfwu")
+script = ExtResource("1_6w12g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Bouncer"]]
+shape = SubResource("CircleShape2D_3yl48")
+debug_color = Color(0.88909, 0.268536, 0.483122, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="PowerTimer" type="Timer" parent="."]
+
+[node name="Particle1" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 32
+process_material = ExtResource("2_0orkx")
+texture = ExtResource("3_djk6u")
+
+[node name="ParticleTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -12.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_q55ea")
+animation = &"power"
+autoplay = "default"

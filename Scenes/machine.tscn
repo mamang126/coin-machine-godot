@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://di7ucb61673ax"]
+
+[ext_resource type="Script" path="res://Scripts/Bouncer_Container/bouncers.gd" id="1_usmsv"]
+[ext_resource type="Script" path="res://Scripts/Ball_Container/delete_area.gd" id="2_sqlp0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcmkp"]
+size = Vector2(980, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ol64q"]
+size = Vector2(20, 1000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6mscs"]
+size = Vector2(20, 1000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dndxu"]
+size = Vector2(980, 19)
+
+[node name="Machine" type="Node2D"]
+
+[node name="Container" type="StaticBody2D" parent="."]
+
+[node name="Botton_Collider" type="CollisionShape2D" parent="Container" groups=["Bottom_Container"]]
+shape = SubResource("RectangleShape2D_hcmkp")
+
+[node name="Left_Collider" type="CollisionShape2D" parent="Container"]
+position = Vector2(-500, -500)
+shape = SubResource("RectangleShape2D_ol64q")
+
+[node name="Right_Collider" type="CollisionShape2D" parent="Container"]
+position = Vector2(500, -500)
+shape = SubResource("RectangleShape2D_6mscs")
+
+[node name="Bouncers" type="Node2D" parent="."]
+script = ExtResource("1_usmsv")
+
+[node name="Timer" type="Timer" parent="Bouncers"]
+
+[node name="Delete_Area" type="Area2D" parent="." groups=["Bottom_Container"]]
+position = Vector2(0, -20)
+script = ExtResource("2_sqlp0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Delete_Area" groups=["Bottom_Container"]]
+shape = SubResource("RectangleShape2D_dndxu")
+debug_color = Color(0.881007, 0.286453, 0.465087, 0.42)
+
+[connection signal="body_entered" from="Delete_Area" to="Delete_Area" method="onBodyEntered"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm5fl2optgtlm"]
+
+[ext_resource type="PackedScene" uid="uid://di7ucb61673ax" path="res://Scenes/machine.tscn" id="1_6b7fk"]
+[ext_resource type="Script" path="res://Scripts/Ball_Container/ball_container.gd" id="2_lrejh"]
+[ext_resource type="PackedScene" uid="uid://nvk68pm4xvkq" path="res://Scenes/ux.tscn" id="3_p655a"]
+
+[node name="Main_Scene" type="Node2D"]
+
+[node name="Machine" parent="." instance=ExtResource("1_6b7fk")]
+position = Vector2(960, 1024)
+
+[node name="Ball_Container" type="Node2D" parent="."]
+position = Vector2(960, 100)
+script = ExtResource("2_lrejh")
+
+[node name="Timer" type="Timer" parent="Ball_Container"]
+
+[node name="UX" parent="." instance=ExtResource("3_p655a")]
